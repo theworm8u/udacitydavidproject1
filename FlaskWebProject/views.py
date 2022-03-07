@@ -61,7 +61,7 @@ def post(id):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        app.logger.info('Info: User successfully logged in.')
+        app.logger.info('Info: Admin successfully logged in.')
         return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
@@ -72,6 +72,7 @@ def login():
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
+        app.logger.info('Info: Admin successfully logged in.')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('home')
         return redirect(next_page)
@@ -97,6 +98,7 @@ def authorized():
         user = User.query.filter_by(username="admin").first()
         login_user(user)
         _save_cache(cache)
+        app.logger.info('Info: Admin successfully logged in.')
     return redirect(url_for('home'))
 
 @app.route('/logout')
