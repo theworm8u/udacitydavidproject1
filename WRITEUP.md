@@ -8,20 +8,19 @@
 - *Justify your choice*
 
 App Services
-- PaaS - Allows us to focus on the application and lets Azure take care of the infrastructure
-- High availability and autoscaling (supports both Linux and Windows)
-- CD model, allows me to use GitHub
-- Not heavy RAM needed as this is a blog with some pictures.
-- Continuously paying for the service
+- Costs: The costs will be continuous as the service is always running. 
+- Scalability: There is vertical scaling without the app having to be redeployed. There is a limit of 14GB of memory and 4 vCPUs per instance.
+- Availability: No control over the web server. One cannot change any server configurations. Azure handles this area for you as well as managing OS upgrades. Both Linux and Windows machines are available.
+- Workflow: There is the capability to connect to GitHub and have CI/CD.
 
 VM
-- Full control / access of vm
-- Lower upfront costs
-- Also supports both Linux and Windows
-- High availability, scalability, and redundancy
+- Costs: The costs scale with power. It is important to note that the upfront costs are lower. This means this could be a good option for creating Proof of Concepts and quickly testing.
+- Scalability: VMs can scale vertically (more power) and horizontally (more machines). 
+- Availability: There is much higher control of your server using VMs. One also as more security controls with VMs. One can have both Linux and Windows machines.
+- Workflow: VMs require a lot more management support. This requires knowledge of image configurations to ensure best practices are applied. It would also require one to be responsible for patches and OS upgrades when needed. (However, these processes can be automated with a little extra effort.)
 
-I chose to use App Services because VM is more time consuming for the developer. I also found
-App Services to be enough power to handle the needs of a blog with images.
+
+I chose to use App Services because it requires less management support by me. App Services is managed by Azure as a PaaS. App Services can autoscale based on site traffic / usage needs without having to redeploy to a larger server. I also chose App Services because of the CI/CD and being able to connect to GitHub. This makes it easier to sync code changes quickly.
 
 ### Assess app changes that would change your decision.
 
